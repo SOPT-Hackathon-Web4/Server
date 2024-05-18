@@ -2,6 +2,7 @@ package server.sopt.server.controller.quiz;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.Past;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import server.sopt.server.common.CommonResponse;
@@ -34,12 +35,13 @@ public class QuizController {
         );
         return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,null);
     }
-    @PostMapping("/{target-member-id}")
+    @PostMapping("/{targetmemberid}")
     public CommonResponse<QuizScoreDto> checkAnswer(
+            @PathVariable Long targetmemberid,
             @RequestBody QuizResultDto quizResultDto
     ){
 
-        return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,quizService.checkAnswer(quizResultDto));
+        return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,quizService.checkAnswer(targetmemberid,quizResultDto));
     }
     @DeleteMapping("/delete")
     public CommonResponse<DeleteSuccessDto> deleteQuiz(
