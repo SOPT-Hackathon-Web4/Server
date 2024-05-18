@@ -31,6 +31,4 @@ public class Connect extends BaseTimeEntity {
         connect.targetMemberId = targetMemberId;
         return connect;
     }
-
-
 }
