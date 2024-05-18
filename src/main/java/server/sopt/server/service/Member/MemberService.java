@@ -33,13 +33,13 @@ public class MemberService {
     private final QuizRepository quizRepository;
     private final QuizDetailRepositoy quizDetailRepositoy;
 
-    public GetAccountCheckDto getAccountCheck(GetAccountValidDto getAccountValidDto) {
+    public GetAccountCheckDto getAccountCheck(String instaId,String pass) {
         Optional<Member> member =memberRepository.findMemberByInstaId(
-                getAccountValidDto.instaId());
+                instaId);
         //11111111
         return GetAccountCheckDto.of(member.get()
                         .getPassword()
-                        .equals(getAccountValidDto.pass()));
+                        .equals(pass));
     }
 
     public Member getMemberById(Long memberId) {
@@ -49,8 +49,9 @@ public class MemberService {
         return memberRepository.findMemberByInstaId(instaId);
     }
 
-    public GetInstaIdCheckDto getInstaIdCheck(GetInstaIdValidDto getInstaIdValidDto) {
-        Optional<Member> member =  findMemberByInstaId(getInstaIdValidDto.instaId());
+    public GetInstaIdCheckDto getInstaIdCheck(String instaId) {
+        Optional<Member> member =  findMemberByInstaId(instaId);
+        System.out.println(member);
         if (member.isPresent()){
             return GetInstaIdCheckDto.of(true);
         }
