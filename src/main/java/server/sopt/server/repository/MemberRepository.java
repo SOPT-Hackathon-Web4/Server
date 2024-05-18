@@ -11,4 +11,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>,MemberRepo
 
     Member findMemberByInstaId(String instagram);
     Member findMemberById(Long memberId);
+
 }
