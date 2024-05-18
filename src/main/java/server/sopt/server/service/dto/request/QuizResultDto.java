@@ -6,7 +6,6 @@ import java.util.List;
 
 public record QuizResultDto(
         String instaId,
-        Long targetId,
-        List<QuizDetail> quizDetails
+        List<Boolean> quizAnswer
 ) {
 }
