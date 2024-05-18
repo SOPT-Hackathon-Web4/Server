@@ -1,10 +1,7 @@
 package server.sopt.server.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -18,13 +15,17 @@ public class Quiz
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long quizId;
 
+
     @OneToOne
-    private Member memberId;
+    private Member member;
 
     @OneToMany
     private List<QuizDetail> quizDetails;
 
-
-
+    @Builder
+    public Quiz(Member member, List<QuizDetail> quizDetails) {
+        this.member = member;
+        this.quizDetails = quizDetails;
+    }
 
 }
