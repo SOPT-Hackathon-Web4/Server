@@ -38,4 +38,7 @@ public class MemberService {
                         equals(getInstaIdValidDto.instaId()));
 
     }
+    public void deleteMemberById(Long memberId){
+        memberRepository.deleteById(memberId);
+    }
 }
