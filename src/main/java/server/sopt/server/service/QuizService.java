@@ -10,6 +10,7 @@ import server.sopt.server.domain.QuizDetail;
 import server.sopt.server.exception.SuccessMessage;
 import server.sopt.server.repository.QuizDetailRepositoy;
 import server.sopt.server.repository.QuizRepository;
+import server.sopt.server.service.Member.MemberService;
 import server.sopt.server.service.dto.CreatQuizDetailRequest;
 import server.sopt.server.service.dto.CreateQuizRequest;
 

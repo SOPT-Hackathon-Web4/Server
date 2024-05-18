@@ -9,17 +9,14 @@ import lombok.*;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class QuizDetail {
-
-//   id
+//    id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long QuizDetailId;
+    private Long id;
 //    Quiz 감쌀 객체
     @ManyToOne
     private Quiz quiz;
-
 
     @Column(nullable = false)
     private String questionMessage;
