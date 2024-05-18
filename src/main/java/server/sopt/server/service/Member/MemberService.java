@@ -39,7 +39,7 @@ public class MemberService {
         //11111111
         return GetAccountCheckDto.of(member.get()
                         .getPassword()
-                        .equals(getAccountValidDto.password()));
+                        .equals(getAccountValidDto.pass()));
     }
 
     public Member getMemberById(Long memberId) {
