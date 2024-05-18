@@ -20,9 +20,17 @@ public class Connect extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private Long memberid;
+    private Long memberId;
 
     @Column(nullable = false)
-    private Long otherMemberId;
+    private Long targetMemberId;
+
+    public static Connect create(Long memberId,Long targetMemberId){
+        Connect connect = new Connect();
+        connect.memberId = memberId;
+        connect.targetMemberId = targetMemberId;
+        return connect;
+    }
+
 
 }

@@ -9,5 +9,6 @@ import server.sopt.server.domain.Scrap;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long>,MemberRepositoryCustom {
 
-    Member findMemberByInstagram(String instagram);
+    Member findMemberByInstaId(String instagram);
+    Member findMemberById(Long memberId);
 }

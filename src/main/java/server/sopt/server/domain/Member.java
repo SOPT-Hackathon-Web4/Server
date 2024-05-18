@@ -17,7 +17,7 @@ public class Member extends BaseTimeEntity{
     private Long id;
 
     @Column(nullable = false)
-    private String instagram;
+    private String instaId;
 
     @Column(nullable = false)
     private String name;
@@ -29,5 +29,6 @@ public class Member extends BaseTimeEntity{
 
     @OneToOne(fetch = FetchType.LAZY)
     private Quiz quiz;
+
 
 }
