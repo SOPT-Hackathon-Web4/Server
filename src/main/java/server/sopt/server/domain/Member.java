@@ -16,8 +16,8 @@ public class Member extends BaseTimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String instagram;
+    @Column(nullable = false, unique = true)
+    private String instaId;
 
     @Column(nullable = false)
     private String name;
