@@ -60,8 +60,8 @@ public class MemberService {
     }
 
     @Transactional
-    public ForDetailMemberResponse getMemberDetail(GetMemberDetailDto getMemberDetailDto) {
-        Member member = memberRepository.findMemberById(getMemberDetailDto.memberId());
+    public ForDetailMemberResponse getMemberDetail(Long memberId) {
+        Member member = memberRepository.findMemberById(memberId);
         List<Connect> connects = connectRepository.findByMemberId(member.getId());
         List<Member> members = new java.util.ArrayList<>(List.of());
         for (Connect connect : connects) {

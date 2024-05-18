@@ -24,7 +24,7 @@ public class MemberController {
     @GetMapping("/member/password-check")
     public CommonResponse<GetAccountCheckDto> getAccountCheck (
             @RequestHeader final  String instaId,
-            @RequestHeader String  pass
+            @RequestHeader final String  pass
     ){
         return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getAccountCheck(instaId,pass));
     }
@@ -38,10 +38,10 @@ public class MemberController {
         return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getInstaIdCheck(instaId));
     }
 
-    @GetMapping("/member/:{memberId}")
+    @GetMapping("/member/{memberId}")
     public CommonResponse<ForDetailMemberResponse>getMemberDetail (
-            @PathVariable final GetMemberDetailDto getMemberDetailDto
+            @PathVariable final Long memberId
     ){
-        return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getMemberDetail(getMemberDetailDto));
+        return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getMemberDetail(memberId));
     }
 }
