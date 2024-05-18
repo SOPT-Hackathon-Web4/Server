@@ -18,6 +18,7 @@ import server.sopt.server.service.dto.response.QuizScoreDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,7 +55,7 @@ public class QuizService {
 
     @Transactional
     public QuizScoreDto checkAnswer(Long targetId,QuizResultDto quizResultDto){
-        Member challengeMember = memberService.findMemberByInstaId(quizResultDto.instaId());
+        Optional<Member> challengeMember = memberService.findMemberByInstaId(quizResultDto.instaId());
         List<QuizDetail> quizDetails = memberService.getMemberById(targetId)
                 .getQuiz().getQuizDetails();
 
@@ -67,7 +68,7 @@ public class QuizService {
             }
         }
         if (count==0){
-            connectService.saveConnect(challengeMember.getId(),targetId);
+            connectService.saveConnect(challengeMember.get().getId(),targetId);
         }
         return QuizScoreDto.of(count);
     }

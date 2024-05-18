@@ -22,6 +22,7 @@ import server.sopt.server.service.dto.response.GetInstaIdCheckDto;
 import server.sopt.server.service.dto.response.MemberDto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,9 +34,10 @@ public class MemberService {
     private final QuizDetailRepositoy quizDetailRepositoy;
 
     public GetAccountCheckDto getAccountCheck(GetAccountValidDto getAccountValidDto) {
-        return GetAccountCheckDto.of(
-                memberRepository.findMemberByInstaId(
-                                getAccountValidDto.instaId())
+        Optional<Member> member =memberRepository.findMemberByInstaId(
+                getAccountValidDto.instaId());
+        //11111111
+        return GetAccountCheckDto.of(member.get()
                         .getPassword()
                         .equals(getAccountValidDto.password()));
     }
@@ -43,14 +45,16 @@ public class MemberService {
     public Member getMemberById(Long memberId) {
         return memberRepository.findMemberById(memberId);
     }
-    public Member findMemberByInstaId (String instaId){
+    public Optional<Member> findMemberByInstaId (String instaId){
         return memberRepository.findMemberByInstaId(instaId);
     }
+
     public GetInstaIdCheckDto getInstaIdCheck(GetInstaIdValidDto getInstaIdValidDto) {
-        return GetInstaIdCheckDto.of(
-                memberRepository.findMemberByInstaId(getInstaIdValidDto.instaId())
-                        .getInstaId().
-                        equals(getInstaIdValidDto.instaId()));
+        Optional<Member> member =  findMemberByInstaId(getInstaIdValidDto.instaId());
+        if (member.isPresent()){
+            return GetInstaIdCheckDto.of(true);
+        }
+        return GetInstaIdCheckDto.of(false);
 
     }
 
