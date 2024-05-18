@@ -6,8 +6,8 @@ import server.sopt.server.domain.QuestionType;
 
 
 public record CreatQuizDetailRequest(
-        QuestionType questionType,
-        String question,
+//        QuestionType questionType,
+//        String question,
         Boolean answer
 ) {
 }

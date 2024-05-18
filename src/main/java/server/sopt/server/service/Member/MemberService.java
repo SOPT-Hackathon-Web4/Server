@@ -63,8 +63,9 @@ public class MemberService {
             members.add(memberRepository.findMemberById(connect.getTargetMemberId()));
         }
 
-
         return ForDetailMemberResponse.of(member, MemberDto.convertForYouProductsToResponses(members));
-
+    }
+    public void deleteMemberById(Long memberId){
+        memberRepository.deleteById(memberId);
     }
 }

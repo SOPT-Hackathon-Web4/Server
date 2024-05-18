@@ -39,7 +39,6 @@ public class QuizService {
         List<QuizDetail> quizDetails = new ArrayList<>(List.of());
         for (CreatQuizDetailRequest request : requests) {
             QuizDetail quizDetail = QuizDetail.builder()
-                    .questionMessage(request.question())
                     .answer(request.answer())
                     .build();
             quizDetails.add(quizDetail);
@@ -54,21 +53,21 @@ public class QuizService {
     }
 
     @Transactional
-    public QuizScoreDto checkAnswer(QuizResultDto quizResultDto){
+    public QuizScoreDto checkAnswer(Long targetId,QuizResultDto quizResultDto){
         Member challengeMember = memberService.findMemberByInstaId(quizResultDto.instaId());
-        List<QuizDetail> quizDetails = memberService.getMemberById(quizResultDto.targetId())
+        List<QuizDetail> quizDetails = memberService.getMemberById(targetId)
                 .getQuiz().getQuizDetails();
 
 //        targetMember.getQuiz().getQuizDetails()
 //                .stream().forEach();
         int count =0;
         for (int i = 0; i < quizDetails.size(); i++) {
-            if(quizDetails.get(i) == quizResultDto.quizDetails().get(i)){
+            if(quizDetails.get(i).isAnswer() == quizResultDto.quizAnswer().get(i)){
                 ++count;
             }
         }
         if (count==0){
-            connectService.saveConnect(challengeMember.getId(),quizResultDto.targetId());
+            connectService.saveConnect(challengeMember.getId(),targetId);
         }
         return QuizScoreDto.of(count);
     }

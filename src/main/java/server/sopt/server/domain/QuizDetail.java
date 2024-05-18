@@ -18,9 +18,6 @@ public class QuizDetail {
     @ManyToOne
     private Quiz quiz;
 
-    @Column(nullable = false)
-    private String questionMessage;
-
 
     @Column(nullable = false)
     private boolean answer;
