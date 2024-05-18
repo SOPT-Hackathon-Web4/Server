@@ -13,8 +13,7 @@ public class Quiz
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long quizId;
-
+    private Long Id;
 
     @OneToOne
     private Member member;
