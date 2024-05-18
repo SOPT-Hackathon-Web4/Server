@@ -22,6 +22,11 @@ public class Member extends BaseTimeEntity{
     @Column(nullable = false)
     private String name;
 
+
+    @Column(nullable = false)
+    private String password;
+
+
     @OneToOne(fetch = FetchType.LAZY)
     private Quiz quiz;
 
