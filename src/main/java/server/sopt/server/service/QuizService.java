@@ -3,19 +3,16 @@ package server.sopt.server.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.sopt.server.common.CommonResponse;
-import server.sopt.server.domain.Connect;
+
 import server.sopt.server.domain.Member;
 import server.sopt.server.domain.Quiz;
 import server.sopt.server.domain.QuizDetail;
-import server.sopt.server.exception.SuccessMessage;
 import server.sopt.server.repository.QuizDetailRepositoy;
 import server.sopt.server.repository.QuizRepository;
 
 import server.sopt.server.service.Connect.ConnectService;
 import server.sopt.server.service.Member.MemberService;
 import server.sopt.server.service.dto.CreatQuizDetailRequest;
-import server.sopt.server.service.dto.CreateQuizRequest;
 import server.sopt.server.service.dto.request.QuizResultDto;
 import server.sopt.server.service.dto.response.QuizScoreDto;
 
@@ -44,7 +41,6 @@ public class QuizService {
             QuizDetail quizDetail = QuizDetail.builder()
                     .questionMessage(request.question())
                     .answer(request.answer())
-                    .questionType(request.questionType())
                     .build();
             quizDetails.add(quizDetail);
             quizDetailRepositoy.save(quizDetail);
