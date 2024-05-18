@@ -9,7 +9,9 @@ import server.sopt.server.common.CommonResponse;
 import server.sopt.server.exception.SuccessMessage;
 import server.sopt.server.service.Member.MemberService;
 import server.sopt.server.service.dto.request.GetAccountValidDto;
+import server.sopt.server.service.dto.request.GetInstaIdValidDto;
 import server.sopt.server.service.dto.response.GetAccountCheckDto;
+import server.sopt.server.service.dto.response.GetInstaIdCheckDto;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,5 +23,12 @@ public class MemberController {
             @RequestHeader final GetAccountValidDto getAccountValidDto
     ){
         return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getAccountCheck(getAccountValidDto));
+    }
+
+    @GetMapping("/member")
+    public CommonResponse<GetInstaIdCheckDto>getInstaIdCheck (
+            @RequestHeader final GetInstaIdValidDto getInstaIdValidDto
+    ){
+        return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getInstaIdCheck(getInstaIdValidDto));
     }
 }

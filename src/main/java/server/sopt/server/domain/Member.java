@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 public class Member extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String instaId;
 
     @Column(nullable = false)
@@ -30,5 +31,11 @@ public class Member extends BaseTimeEntity{
     @OneToOne(fetch = FetchType.LAZY)
     private Quiz quiz;
 
+    public Member(String instaId, String name, String password, Quiz quiz) {
+        this.instaId = instaId;
+        this.name = name;
+        this.password = password;
+        this.quiz = quiz;
+    }
 
 }
