@@ -19,8 +19,12 @@ public class Quiz
     @OneToOne
     private Member member;
 
-    @OneToMany
+    @OneToMany(mappedBy = "quiz")
     private List<QuizDetail> quizDetails;
+
+    public void setQuizDetails(List<QuizDetail> quizDetails) {
+        this.quizDetails = quizDetails;
+    }
 
     @Builder
     public Quiz(Member member, List<QuizDetail> quizDetails) {

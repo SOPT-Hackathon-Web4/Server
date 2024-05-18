@@ -33,23 +33,26 @@ public class QuizService {
     @Transactional
     public void createQuiz(
             Long memberId,
-            List<CreatQuizDetailRequest> requests
+            CreatQuizDetailRequest requests
     ) {
+       List<Boolean> requestLit=  List.of(requests.answer1(), requests.answer2(), requests.answer3(), requests.answer4(),requests.answer5(),requests.answer6(),requests.answer7(),requests.answer8());
+
         Member member = memberService.getMemberById(memberId);
-        Quiz Quiz = quizRepository.findByMemberId(member);
+
+        Quiz quiz = server.sopt.server.domain.Quiz.builder()
+                .member(member)
+                .build();
+
         List<QuizDetail> quizDetails = new ArrayList<>(List.of());
-        for (CreatQuizDetailRequest request : requests) {
+        for (Boolean request : requestLit) {
             QuizDetail quizDetail = QuizDetail.builder()
-                    .answer(request.answer())
+                    .answer(request)
                     .build();
             quizDetails.add(quizDetail);
             quizDetailRepositoy.save(quizDetail);
         }
-        Quiz quiz = server.sopt.server.domain.Quiz.builder()
-                .member(member)
-                .quizDetails(quizDetails)
-                .build();
 
+        quiz.setQuizDetails(quizDetails);
         quizRepository.save(quiz);
     }
 

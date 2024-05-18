@@ -28,7 +28,7 @@ public class QuizController {
     @PostMapping
     public CommonResponse<Null> createQuiz(
             @RequestHeader Long memberId,
-            @RequestBody List<CreatQuizDetailRequest> requests
+            @RequestBody CreatQuizDetailRequest requests
     ) {
         quizService.createQuiz(
                 memberId, requests

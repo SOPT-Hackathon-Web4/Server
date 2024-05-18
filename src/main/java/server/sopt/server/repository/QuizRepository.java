@@ -9,5 +9,5 @@ import server.sopt.server.domain.Quiz;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
-    Quiz findByMemberId(Member member);
+    Quiz findByMemberId(Long memberId);
 }
