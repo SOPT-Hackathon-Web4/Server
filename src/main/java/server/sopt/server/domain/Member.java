@@ -37,4 +37,5 @@ public class Member extends BaseTimeEntity{
         this.password = password;
         this.quiz = quiz;
     }
+
 }

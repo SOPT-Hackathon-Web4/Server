@@ -2,6 +2,8 @@ package server.sopt.server.service.Member;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import org.springframework.transaction.annotation.Transactional;
 import server.sopt.server.domain.Member;
 import server.sopt.server.repository.MemberRepository;
 import server.sopt.server.service.dto.request.GetAccountValidDto;
@@ -11,6 +13,7 @@ import server.sopt.server.service.dto.response.GetInstaIdCheckDto;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -25,11 +28,14 @@ public class MemberService {
     public Member getMemberById(Long memberId) {
         return memberRepository.findMemberById(memberId);
     }
-
+    public Member findMemberByInstaId (String instaId){
+        return memberRepository.findMemberByInstaId(instaId);
+    }
     public GetInstaIdCheckDto getInstaIdCheck(GetInstaIdValidDto getInstaIdValidDto) {
         return GetInstaIdCheckDto.of(
                 memberRepository.findMemberByInstaId(getInstaIdValidDto.instaId())
                         .getInstaId().
                         equals(getInstaIdValidDto.instaId()));
+
     }
 }
