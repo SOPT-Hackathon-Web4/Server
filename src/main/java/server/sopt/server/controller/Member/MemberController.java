@@ -33,8 +33,7 @@ public class MemberController {
     public CommonResponse<GetInstaIdCheckDto>getInstaIdCheck (
             @RequestHeader final String instaId
     ){
-
-
+        System.out.println("!!!");
         return CommonResponse.success(SuccessMessage.PROCESS_SUCCESS,memberService.getInstaIdCheck(instaId));
     }
 
